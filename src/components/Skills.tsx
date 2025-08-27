@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Code2, Cpu, Database, Cloud, Brain, Settings, Sparkles } from 'lucide-react';
 import { skillsData } from '../data/skillsData';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState<string>(skillsData[0].category);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
   const categories = [...new Set(skillsData.map(skill => skill.category))];
+
+  useEffect(() => {
+    // Set initial window width
+    setWindowWidth(window.innerWidth);
+    
+    // Add event listener for window resize
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -20,6 +33,23 @@ const Skills = () => {
   };
 
   const filteredSkills = skillsData.filter(skill => skill.category === activeCategory);
+
+  // Function to determine text display based on screen size
+  const getDisplayText = (text: string) => {
+    if (windowWidth >= 1280) {
+      return text; // Full text on extra large screens
+    } else if (windowWidth >= 1024) {
+      return text.length > 20 ? text.substring(0, 18) + '...' : text;
+    } else if (windowWidth >= 768) {
+      return text.length > 16 ? text.substring(0, 14) + '...' : text;
+    } else if (windowWidth >= 640) {
+      return text.length > 14 ? text.substring(0, 12) + '...' : text;
+    } else if (windowWidth >= 480) {
+      return text.length > 12 ? text.substring(0, 10) + '...' : text;
+    } else {
+      return text.length > 10 ? text.substring(0, 8) + '...' : text;
+    }
+  };
 
   return (
     <section id="skills" className="py-16 md:py-20 relative bg-gradient-to-br from-gray-900 via-gray-950 to-black">
@@ -37,22 +67,21 @@ const Skills = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-3 py-2 md:px-4 md:py-3 rounded-lg flex items-center gap-1.5 md:gap-2 transition-all duration-300 text-xs md:text-sm font-medium ${
+              className={`px-3 py-2 md:px-4 md:py-3 rounded-lg flex items-center gap-1.5 md:gap-2 transition-all duration-300 text-xs md:text-sm font-medium whitespace-nowrap ${
                 activeCategory === category
                   ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/20'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700'
               }`}
             >
               {getCategoryIcon(category)}
-              <span className="hidden xs:inline">{category.split(' ')[0]}</span>
-              <span className="xs:hidden">{category.split(' ')[0].substring(0, 3)}</span>
+              <span>{getDisplayText(category)}</span>
             </button>
           ))}
         </div>
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" data-aos="fade-up" data-aos-delay="200">
-          {filteredSkills.map((skill,) => (
+          {filteredSkills.map((skill) => (
             <div
               key={skill.name}
               className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-gray-700 hover:border-blue-500/30 transition-all duration-300 group"
@@ -64,14 +93,15 @@ const Skills = () => {
                 </span>
               </div>
               
-              {/* Advanced Proficiency Indicator */}
-              <div className="mb-3">
-                <div className="w-full bg-gray-700 rounded-full h-1.5 md:h-2">
+              {/* Advanced Proficiency Indicator - FIXED POSITIONING */}
+              <div className="mb-3 relative">
+                <div className="w-full bg-gray-700 rounded-full h-1.5 md:h-2 relative">
                   <div 
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 h-1.5 md:h-2 rounded-full transition-all duration-1000 group-hover:shadow-lg group-hover:shadow-blue-500/20"
+                    className="bg-gradient-to-r from-blue-500 to-blue-600 h-1.5 md:h-2 rounded-full transition-all duration-1000 group-hover:shadow-lg group-hover:shadow-blue-500/20 relative"
                     style={{ width: `${skill.level}%` }}
                   >
-                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full float-right mr-0.5 mt-0 md:mr-1 md:mt-1 opacity-80 group-hover:animate-pulse"></div>
+                    {/* Dot positioned exactly on the line */}
+                    <div className="absolute right-0 top-1/2 w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full opacity-80 group-hover:animate-pulse transform -translate-y-1/2"></div>
                   </div>
                 </div>
               </div>
@@ -100,7 +130,7 @@ const Skills = () => {
         <div className="mt-12 md:mt-16 text-center" data-aos="fade-up" data-aos-delay="300">
           <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 gradient-text">Technologies Mastery</h3>
           
-          {/* Interactive Tech Cloud */}
+          {/* Interactive Tech Cloud - IMPROVED MOBILE RESPONSIVENESS */}
           <div className="relative max-w-6xl mx-auto p-4 md:p-6 rounded-xl md:rounded-2xl glass-effect border border-gray-700/30">
             {/* Animated background elements */}
             <div className="absolute top-3 left-3 md:top-4 md:left-4 w-2 h-2 md:w-3 md:h-3 bg-blue-500 rounded-full animate-pulse opacity-60"></div>
@@ -110,11 +140,37 @@ const Skills = () => {
             <div className="relative z-10">
               <div className="flex flex-wrap justify-center gap-2 md:gap-3 mx-auto">
                 {skillsData.map((skill) => {
-                  // Calculate size based on proficiency level
-                  const sizeClass = 
-                    skill.level >= 90 ? 'px-3 py-2 text-sm md:px-4 md:py-3 md:text-base md:scale-110' :
-                    skill.level >= 75 ? 'px-2.5 py-1.5 text-xs md:px-3 md:py-2 md:text-sm' :
-                    skill.level >= 60 ? 'px-2 py-1 text-xs md:px-2.5 md:py-1.5 md:text-xs' : 'px-1.5 py-1 text-xs md:px-2 md:py-1 md:text-xs';
+                  // Calculate size based on proficiency level and screen width
+                  const getSizeClass = () => {
+                    if (windowWidth >= 1280) {
+                      // Extra large screens
+                      return skill.level >= 90 ? 'px-4 py-2.5 text-base' :
+                             skill.level >= 75 ? 'px-3 py-2 text-sm' :
+                             skill.level >= 60 ? 'px-2.5 py-1.5 text-sm' : 'px-2 py-1 text-xs';
+                    } else if (windowWidth >= 1024) {
+                      // Large screens
+                      return skill.level >= 90 ? 'px-3.5 py-2 text-sm' :
+                             skill.level >= 75 ? 'px-3 py-1.5 text-xs' :
+                             skill.level >= 60 ? 'px-2.5 py-1 text-xs' : 'px-2 py-1 text-xs';
+                    } else if (windowWidth >= 768) {
+                      // Medium screens
+                      return skill.level >= 90 ? 'px-3 py-1.5 text-xs' :
+                             skill.level >= 75 ? 'px-2.5 py-1 text-xs' :
+                             skill.level >= 60 ? 'px-2 py-1 text-xs' : 'px-1.5 py-0.5 text-xs';
+                    } else if (windowWidth >= 640) {
+                      // Small screens
+                      return skill.level >= 90 ? 'px-2.5 py-1 text-xs' :
+                             skill.level >= 75 ? 'px-2 py-0.5 text-xs' :
+                             skill.level >= 60 ? 'px-1.5 py-0.5 text-2xs' : 'px-1 py-0.5 text-2xs';
+                    } else {
+                      // Extra small screens
+                      return skill.level >= 90 ? 'px-2 py-0.5 text-2xs' :
+                             skill.level >= 75 ? 'px-1.5 py-0.5 text-2xs' :
+                             skill.level >= 60 ? 'px-1 py-0.5 text-2xs' : 'px-1 py-0.5 text-2xs';
+                    }
+                  };
+                  
+                  const sizeClass = getSizeClass();
                   
                   // Calculate glow intensity based on level
                   const glowClass = 
@@ -145,12 +201,11 @@ const Skills = () => {
                         e.currentTarget.style.zIndex = '';
                       }}
                     >
-                      <span className="hidden xs:inline">{skill.name}</span>
-                      <span className="xs:hidden">{skill.name.length > 8 ? skill.name.substring(0, 7) + '...' : skill.name}</span>
+                      {getDisplayText(skill.name)}
                       
                       {/* Proficiency badge on hover */}
-                      <div className="absolute -top-7 -left-2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 
-                                    transition-opacity duration-300 pointer-events-none hidden md:block">
+                      <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 
+                                    transition-opacity duration-300 pointer-events-none">
                         <div className="bg-gray-900 text-white text-xs px-2 py-1 rounded-md border border-gray-700 
                                       whitespace-nowrap shadow-lg">
                           <div className="flex items-center">
