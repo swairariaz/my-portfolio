@@ -52,7 +52,7 @@ const Skills = () => {
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" data-aos="fade-up" data-aos-delay="200">
-          {filteredSkills.map((skill, index) => (
+          {filteredSkills.map((skill,) => (
             <div
               key={skill.name}
               className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 md:p-5 border border-gray-700 hover:border-blue-500/30 transition-all duration-300 group"
