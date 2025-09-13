@@ -9,26 +9,26 @@ export interface Service {
 export const servicesData: Service[] = [
   {
     id: 1,
+    title: "Data Analytics & Visualization Solutions",
+    description: "Custom interactive dashboards for data cleaning, exploratory analysis, feature engineering, stunning visualizations, forecasting, and report generation to transform raw data into actionable business insights and strategies.",
+    technologies: ["Python", "Streamlit", "Plotly", "Pandas", "NumPy", "Scikit-learn", "Statsmodels","Matplotlib", "Seaborn"],
+    idealUseCases: [
+      "Economic development indicator analysis and tracking",
+      "Business KPI monitoring and trend forecasting",
+      "Interactive data exploration with charts and heatmaps",
+      "Data-driven decision support for organizations",
+    ]
+  },
+  {
+    id: 2,
     title: "Predictive Analytics Solutions",
     description: "End-to-end machine learning systems for data-driven forecasting, pattern recognition, and predictive modeling to drive business intelligence and automated decision-making.",
-    technologies: ["Python", "TensorFlow", "Scikit-learn", "XGBoost", "Pandas", "MLflow"],
+    technologies:["Python", "TensorFlow", "Scikit-learn", "XGBoost", "Pandas", "MLflow"],
     idealUseCases: [
       "Demand forecasting for retail and e-commerce",
       "Customer churn prediction and retention",
       "Financial risk assessment and credit scoring",
       "Predictive maintenance in manufacturing"
-    ]
-  },
-  {
-    id: 2,
-    title: "Computer Vision Systems",
-    description: "Advanced image and video analysis solutions including object detection, facial recognition, quality inspection, and real-time video processing for various industries.",
-    technologies: ["OpenCV", "TensorFlow", "PyTorch", "CNN Architectures", "Real-time Processing", "Hyperparameter Optimization"],
-    idealUseCases: [
-      "Quality control and defect detection in manufacturing",
-      "Security and surveillance systems enhancement",
-      "Medical imaging analysis and diagnostics",
-      "Autonomous vehicle perception systems"
     ]
   },
   {
