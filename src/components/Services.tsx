@@ -1,8 +1,9 @@
-import { Code, Eye, MessageCircle, RefreshCw, Cloud, Cpu } from 'lucide-react';
+import { Code, Eye, MessageCircle, RefreshCw, Cloud, Cpu, BarChart } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 
 const Services = () => {
   const serviceIcons = [
+    <BarChart key="barchart" className="text-ai-accent" size={24} />,
     <Cpu key="cpu" className="text-ai-accent" size={24} />,
     <Eye key="eye" className="text-ai-accent" size={24} />,
     <MessageCircle key="message" className="text-ai-accent" size={24} />,
