@@ -34,6 +34,15 @@ const Projects = () => {
     <Brain key="brain2" className="text-cyan-400" size={18} />,
   ];
 
+  const handleProjectClick = (id: number) => {
+    console.log('Clicked project ID:', id);
+    setSelectedProject(id);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <section id="projects" className="py-16 md:py-20 relative bg-gradient-to-br from-gray-900 via-gray-950 to-black">
       <div className="container mx-auto px-4 md:px-6">
@@ -73,10 +82,9 @@ const Projects = () => {
             return (
               <div
                 key={project.id}
-                className={`group bg-gradient-to-br ${bgColor} border rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300 cursor-pointer h-full flex flex-col`}
+                className={`group bg-gradient-to-br ${bgColor} border rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col`}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                onClick={() => setSelectedProject(project.id)}
               >
                 {/* Project Header */}
                 <div className="mb-3 md:mb-4 flex items-start justify-between">
@@ -129,7 +137,13 @@ const Projects = () => {
                     {project.status}
                   </span>
                   
-                  <button className="text-blue-500 hover:text-blue-400 flex items-center text-xs md:text-sm group-hover:translate-x-1 transition-transform duration-300">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProjectClick(project.id);
+                    }}
+                    className="text-blue-500 hover:text-blue-400 flex items-center text-xs md:text-sm group-hover:translate-x-1 transition-transform duration-300"
+                  >
                     View Details
                     <ExternalLink size={12} className="ml-1" />
                   </button>
@@ -139,94 +153,110 @@ const Projects = () => {
           })}
         </div>
 
-        {/* Project Modal */}
-        {selectedProject !== null && (
-          <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-2 md:p-4 overflow-y-auto">
-            <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 md:p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto mt-16 md:mt-20">
-              <div className="flex justify-between items-start mb-4 md:mb-6 sticky top-0 bg-gray-800 py-3 md:py-4">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold gradient-text">
-                  {projectsData.find(p => p.id === selectedProject)?.title}
-                </h3>
-                <button 
-                  onClick={() => setSelectedProject(null)}
-                  className="text-gray-400 hover:text-white p-1 md:p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                >
-                  <X size={20} className="md:w-6 md:h-6" />
-                </button>
-              </div>
+        {/* Background Elements */}
+        <div className="absolute top-16 left-4 md:top-20 md:left-10 w-16 h-16 md:w-24 md:h-24 bg-blue-500/10 rounded-full blur-2xl md:blur-3xl animate-pulse-slow pointer-events-none"></div>
+        <div className="absolute bottom-16 right-4 md:bottom-20 md:right-10 w-20 h-20 md:w-32 md:h-32 bg-blue-600/10 rounded-full blur-2xl md:blur-3xl animate-pulse-slow delay-1000 pointer-events-none"></div>
+      </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                <div>
-                  <p className="text-gray-400 text-xs md:text-sm mb-3 md:mb-4">
-                    {projectsData.find(p => p.id === selectedProject)?.category}
-                  </p>
-                  <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
-                    {projectsData.find(p => p.id === selectedProject)?.detailedDescription}
-                  </p>
-                  
-                  <div className="mb-4 md:mb-6">
-                    <h4 className="font-semibold text-blue-500 mb-2 md:mb-3 flex items-center text-sm md:text-base">
-                      <Code2 size={16} className="mr-2" />
-                      Technologies Used:
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                      {projectsData.find(p => p.id === selectedProject)?.technologies.map((tech, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-gray-700/50 rounded text-xs md:text-sm text-gray-300 border border-gray-600">
-                          {tech}
-                        </span>
-                      ))}
+      {/* Project Modal */}
+      {selectedProject !== null && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 md:p-6 overflow-y-auto"
+          onClick={handleCloseModal}
+        >
+          {(() => {
+            const project = projectsData.find(p => p.id === selectedProject);
+            if (!project) {
+              console.error(`Project with id ${selectedProject} not found`);
+              setSelectedProject(null);
+              return null;
+            }
+            return (
+              <div
+                className="bg-gray-800 border border-gray-700 rounded-xl p-4 md:p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex justify-between items-start mb-4 md:mb-6">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold gradient-text">
+                    {project.title}
+                  </h3>
+                  <button 
+                    onClick={handleCloseModal}
+                    className="text-gray-400 hover:text-white p-1 md:p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                  <div>
+                    <p className="text-gray-400 text-xs md:text-sm mb-3 md:mb-4">
+                      {project.category}
+                    </p>
+                    <p className="text-gray-300 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
+                      {project.detailedDescription}
+                    </p>
+                    
+                    <div className="mb-4 md:mb-6">
+                      <h4 className="font-semibold text-blue-500 mb-2 md:mb-3 flex items-center text-sm md:text-base">
+                        <Code2 size={16} className="mr-2" />
+                        Technologies Used:
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5 md:gap-2">
+                        {project.technologies.map((tech, idx) => (
+                          <span key={idx} className="px-2 py-1 bg-gray-700/50 rounded text-xs md:text-sm text-gray-300 border border-gray-600">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="mb-4 md:mb-6">
+                      <h4 className="font-semibold text-blue-600 mb-2 md:mb-3 flex items-center text-sm md:text-base">
+                        <Brain size={16} className="mr-2" />
+                        Key Achievements:
+                      </h4>
+                      <ul className="space-y-1.5 md:space-y-2">
+                        {project.achievements.map((achievement, idx) => (
+                          <li key={idx} className="text-gray-300 flex items-start text-sm md:text-base">
+                            <span className="text-blue-500 mr-2 mt-1">•</span>
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 md:gap-3">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-gray-700 rounded-lg text-gray-300 hover:bg-gray-600 transition-colors text-xs md:text-sm"
+                      >
+                        <Github size={16} className="mr-1.5 md:mr-2" />
+                        View Code
+                      </a>
+                      {project.youtubeUrl && (
+                        <a
+                          href={project.youtubeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-gray-700 rounded-lg text-gray-300 hover:bg-red-600 transition-colors text-xs md:text-sm"
+                        >
+                          <Youtube size={16} className="mr-1.5 md:mr-2" />
+                          Watch Demo
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
-
-                <div>
-                  <div className="mb-4 md:mb-6">
-                    <h4 className="font-semibold text-blue-600 mb-2 md:mb-3 flex items-center text-sm md:text-base">
-                      <Brain size={16} className="mr-2" />
-                      Key Achievements:
-                    </h4>
-                    <ul className="space-y-1.5 md:space-y-2">
-                      {projectsData.find(p => p.id === selectedProject)?.achievements.map((achievement, idx) => (
-                        <li key={idx} className="text-gray-300 flex items-start text-sm md:text-base">
-                          <span className="text-blue-500 mr-2 mt-1">•</span>
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 md:gap-3">
-                    <a
-                      href={projectsData.find(p => p.id === selectedProject)?.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-gray-700 rounded-lg text-gray-300 hover:bg-gray-600 transition-colors text-xs md:text-sm"
-                    >
-                      <Github size={16} className="mr-1.5 md:mr-2" />
-                      View Code
-                    </a>
-                    {projectsData.find(p => p.id === selectedProject)?.youtubeUrl && (
-                      <a
-                        href={projectsData.find(p => p.id === selectedProject)?.youtubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-gray-700 rounded-lg text-gray-300 hover:bg-red-600 transition-colors text-xs md:text-sm"
-                      >
-                        <Youtube size={16} className="mr-1.5 md:mr-2" />
-                        Watch Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
               </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Background Elements */}
-      <div className="absolute top-16 left-4 md:top-20 md:left-10 w-16 h-16 md:w-24 md:h-24 bg-blue-500/10 rounded-full blur-2xl md:blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-16 right-4 md:bottom-20 md:right-10 w-20 h-20 md:w-32 md:h-32 bg-blue-600/10 rounded-full blur-2xl md:blur-3xl animate-pulse-slow delay-1000"></div>
+            );
+          })()}
+        </div>
+      )}
     </section>
   );
 };
