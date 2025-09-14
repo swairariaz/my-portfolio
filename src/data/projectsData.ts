@@ -7,7 +7,7 @@ export interface Project {
   technologies: string[];
   achievements: string[];
   githubUrl: string;
-  youtubeUrl?: string; 
+  youtubeUrl?: string;
   status: 'completed' | 'in-progress' | 'archived';
   featured: boolean;
 }
@@ -92,10 +92,28 @@ export const projectsData: Project[] = [
     achievements: [
       "Engineered a machine learning recommendation system using cosine similarity to deliver accurate, relevance-based IT skill suggestions.",
       "Developed a robust data preprocessing pipeline to normalize and process diverse skill inputs, ensuring reliable matching.",
-      "Designed and deployed an interactive Streamlit web application, enabling intuitive user interaction and real-time recommendations.",
+      "Designed and deployed an interactive Streamlit web application, enabling intuitive user interaction and real-time recommendations."
     ],
     githubUrl: "https://github.com/swairariaz/IT_Skill_Recommender_System",
     youtubeUrl: "https://www.youtube.com/watch?v=Ap_Q9KL5HEo",
+    status: "completed",
+    featured: true
+  },
+  {
+    id: 6,
+    title: "World Bank Indicators Dashboard",
+    category: "Data Analytics & Visualization",
+    description: "An interactive Streamlit dashboard for exploring and analyzing World Bank development indicators, featuring data cleaning, EDA, visualizations, and forecasting.",
+    detailedDescription: "Developed a comprehensive Streamlit-based dashboard for analyzing World Bank development indicators such as GDP per capita, income growth, life expectancy, and population. The system includes robust data cleaning, wide-to-long reshaping, ISO3 standardization, and feature engineering for rankings and aggregates. It offers interactive visualizations like KPI cards, bubble charts, and heatmaps using Plotly, alongside forecasting with linear regression and exponential smoothing, and supports exports in CSV, JSON, Excel, and PDF formats.",
+    technologies: ["Python", "Streamlit", "Plotly", "Pandas", "NumPy", "Scikit-learn", "Statsmodels", "Matplotlib", "Seaborn", "Data Cleaning", "Feature Engineering", "Time Series Forecasting"],
+    achievements: [
+      "Built an end-to-end data pipeline for cleaning and reshaping World Bank datasets into a standardized, analysis-ready format.",
+      "Created interactive visualizations including KPI cards, trend charts, bubble charts, and correlation heatmaps for insightful EDA.",
+      "Implemented forecasting models using linear regression and exponential smoothing for predictive insights.",
+      "Enabled multi-format data exports (CSV, JSON, Excel, PDF) for seamless reporting and stakeholder use."
+    ],
+    githubUrl: "https://github.com/swairariaz/Worldbank-dashboard",
+    youtubeUrl: "https://www.youtube.com/watch?v=RqYpfMbiT-g",
     status: "completed",
     featured: true
   }
