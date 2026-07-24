@@ -227,7 +227,7 @@ const Skills = () => {
             {/* Section footer */}
             <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-gray-700/30">
               <p className="text-xs md:text-sm text-gray-400">
-                <span className="text-blue-500 font-semibold">{skillsData.filter(s => s.level >= 80).length}+</span> technologies 
+                <span className="text-blue-500 font-semibold">{skillsData.filter(s => s.level >= 90).length}+</span> technologies 
                 mastered at expert level • 
                 <span className="text-blue-600 font-semibold"> {skillsData.length}</span> total technologies
               </p>

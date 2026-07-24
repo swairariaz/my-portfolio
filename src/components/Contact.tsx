@@ -297,7 +297,7 @@ const Contact = () => {
             AI Engineer • Machine Learning Innovator • Futuristic Solutions Developer
           </p>
           <p className="text-gray-500 text-sm mt-1">
-            💼 Open to: Remote Work • Contract Positions • Project Collaboration • Technical Advisory
+            💼 Open to: Onsite work • Remote Work • Contract Positions • Project Collaboration • Technical Advisory
           </p>
         </div>
       </div>

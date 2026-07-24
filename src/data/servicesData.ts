@@ -9,74 +9,74 @@ export interface Service {
 export const servicesData: Service[] = [
   {
     id: 1,
-    title: "Data Analytics & Visualization Solutions",
-    description: "Custom interactive dashboards for data cleaning, exploratory analysis, feature engineering, stunning visualizations, forecasting, and report generation to transform raw data into actionable business insights and strategies.",
-    technologies: ["Python", "Streamlit", "Plotly", "Pandas", "NumPy", "Scikit-learn", "Statsmodels","Matplotlib", "Seaborn"],
+    title: "AI Chatbots & Conversational Systems",
+    description: "Production-grade conversational AI built on RAG architecture and Azure OpenAI, with persistent context retention, behavioral personalization, and real-time database integration for intelligent, context-aware interactions at scale.",
+    technologies: ["Azure OpenAI", "RAG Architecture", "FastAPI", "Firebase", "ChromaDB", "Vector Embeddings", "Prompt Engineering"],
     idealUseCases: [
-      "Economic development indicator analysis and tracking",
-      "Business KPI monitoring and trend forecasting",
-      "Interactive data exploration with charts and heatmaps",
-      "Data-driven decision support for organizations",
+      "Product or in-app assistants with persistent user context",
+      "Customer support automation with knowledge-base grounding",
+      "Personalized, behavior-aware conversational experiences",
+      "Chatbots integrated into existing platforms or game ecosystems"
     ]
   },
   {
     id: 2,
-    title: "Predictive Analytics Solutions",
-    description: "End-to-end machine learning systems for data-driven forecasting, pattern recognition, and predictive modeling to drive business intelligence and automated decision-making.",
-    technologies:["Python", "TensorFlow", "Scikit-learn", "XGBoost", "Pandas", "MLflow"],
+    title: "AI Voice Agents",
+    description: "Automated voice systems for inbound and outbound calls, built with production-ready voice AI platforms and workflow orchestration for natural, low-latency conversations that integrate directly into existing business systems.",
+    technologies: ["Vapi", "Retell AI", "n8n", "GoHighLevel", "REST APIs"],
     idealUseCases: [
-      "Demand forecasting for retail and e-commerce",
-      "Customer churn prediction and retention",
-      "Financial risk assessment and credit scoring",
-      "Predictive maintenance in manufacturing"
+      "Automated appointment scheduling and call handling",
+      "Lead qualification and follow-up calls",
+      "Customer support voice lines with live handoff",
+      "Outbound sales and reminder call automation"
     ]
   },
   {
     id: 3,
-    title: "Natural Language Processing",
-    description: "Intelligent text and speech processing solutions including sentiment analysis, chatbots, document processing, and language translation for enhanced customer experiences.",
-    technologies: ["Hugging Face", "GPT", "spaCy", "NLTK", "Transformer Models", "Sentence Transformers"],
+    title: "AI Workflow Automation",
+    description: "End-to-end automation pipelines that connect forms, databases, and third-party tools, removing manual data handling and letting AI systems act on incoming data the moment it arrives.",
+    technologies: ["n8n", "Zapier", "Google Apps Script", "FastAPI", "Firebase", "Webhooks"],
     idealUseCases: [
-      "Customer service automation and chatbots",
-      "Document analysis and knowledge management",
-      "Social media sentiment monitoring",
-      "Multilingual content processing and translation"
+      "Automated data pipelines between forms, sheets, and databases",
+      "Lead capture and CRM synchronization",
+      "Trigger-based AI processing on new data submissions",
+      "Business workflow automation to replace manual processes"
     ]
   },
   {
     id: 4,
-    title: "Recommendation Engines",
-    description: "Personalized recommendation systems that analyze user behavior to deliver tailored content, product suggestions, and customized experiences across platforms.",
-    technologies: ["Neural Networks", "Collaborative Filtering", "Matrix Factorization", "Real-time APIs", "Vector Embeddings", "Semantic Search"],
+    title: "Data Analytics & Visualization",
+    description: "Custom interactive dashboards for data cleaning, exploratory analysis, feature engineering, and report generation to transform raw data into actionable business insights.",
+    technologies: ["Python", "Streamlit", "Plotly", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn"],
     idealUseCases: [
-      "E-commerce product recommendations",
-      "Content streaming platform suggestions",
-      "Personalized learning path systems",
-      "Customized news and content delivery"
+      "Exploratory data analysis and data cleaning",
+      "Business KPI monitoring and trend forecasting",
+      "Interactive data exploration with charts and heatmaps",
+      "Data-driven decision support for organizations"
     ]
   },
   {
     id: 5,
-    title: "MLOps & Production Deployment",
-    description: "Complete machine learning lifecycle management including model deployment, monitoring, scaling, and maintenance for production-ready AI systems.",
-    technologies: ["Docker", "Kubernetes", "FastAPI", "MLflow", "Git", "CI/CD Pipelines"],
+    title: "Predictive Analytics & Deep Learning",
+    description: "End-to-end machine learning and deep learning systems, from classical models to LSTM and CNN architectures, for forecasting, classification, and pattern recognition in production settings.",
+    technologies: ["Python", "TensorFlow", "Scikit-learn", "XGBoost", "LSTM", "CNN", "Pandas"],
     idealUseCases: [
-      "Enterprise AI system deployment and scaling",
-      "Model performance monitoring and maintenance",
-      "Automated retraining pipelines",
-      "Cloud-based ML infrastructure setup"
+      "Real-time anomaly and intrusion detection",
+      "Image-based classification systems",
+      "Diagnostic and recommendation models from structured data",
+      "Demand forecasting and risk scoring"
     ]
   },
   {
     id: 6,
-    title: "AI-Powered Applications",
-    description: "Full-stack web and mobile applications integrated with machine learning capabilities for seamless user experiences and intelligent functionality.",
-    technologies: ["React", "FastAPI", "Streamlit", "Docker", "REST APIs", "flask"],
+    title: "MLOps & Production Deployment",
+    description: "Complete machine learning lifecycle management, including containerized deployment, monitoring, and scaling, to take models from notebook to reliable production infrastructure.",
+    technologies: ["Docker", "Kubernetes", "FastAPI", "MLflow", "Railway", "Git", "CI/CD"],
     idealUseCases: [
-      "AI-powered SaaS product development",
-      "Internal business intelligence dashboards",
-      "Customer-facing AI applications",
-      "Proof-of-concept and MVP development"
+      "Containerized model deployment and scaling",
+      "Model performance monitoring and maintenance",
+      "Cloud-based ML infrastructure setup",
+      "Taking prototypes from proof-of-concept to production"
     ]
   }
 ];

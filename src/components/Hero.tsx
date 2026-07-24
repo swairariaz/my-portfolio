@@ -7,7 +7,8 @@ const Hero = () => {
     'AI Engineer',
     'Machine Learning Specialist',
     'Data Scientist',
-    'Deep Learning Engineer'
+    'Deep Learning Engineer',
+    'Chatbot Developer'
   ];
   
   const currentText = useTypewriter(roles, 100, 2000);
@@ -26,7 +27,7 @@ const Hero = () => {
 
   const handleDownloadClick = () => {
     const link = document.createElement('a');
-    link.href = './Swaira Riaz.pdf';
+    link.href = '/Swaira Riaz.pdf';
     link.download = 'Swaira_Riaz_AI_Engineer_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -76,7 +77,7 @@ const Hero = () => {
             </p>
 
             <p className="text-sm md:text-base text-blue-400/80 mb-6 md:mb-8 border-l-4 border-blue-400 pl-4 py-2 max-w-2xl mx-auto lg:mx-0">
-              2+ years of experience in production AI systems • MLOPs • Computer Vision • NLP
+              2+ years of experience in production AI systems • MLOPs • Computer Vision • NLP • Rag
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 mb-6 md:mb-8 justify-center lg:justify-start">
@@ -172,12 +173,26 @@ const Hero = () => {
                   <div className="rounded-full p-1 bg-gray-900">
                     <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden border border-gray-700 relative">
                       {/* Profile Picture */}
-                      <div className="w-52 h-52 sm:w-60 sm:h-60 md:w-68 md:h-68 lg:w-76 lg:h-76 rounded-full bg-gray-800 flex items-center justify-center relative overflow-hidden">
+                      <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center relative overflow-hidden">
                         <img 
                           src="./profile_picture.jpg" 
                           alt="Swaira Riaz - AI Engineer"
                           className="w-full h-full object-cover"
+                          style={{
+                            objectPosition: 'center 30%',
+                            transform: 'scale(1)',
+                            filter: 'brightness(1.08) contrast(1.05) saturate(0.95)'
+                          }}
                         />
+
+                        {/* Light Blue Tint to match cyberpunk theme */}
+                        <div 
+                          className="absolute inset-0 pointer-events-none"
+                          style={{
+                            background: 'linear-gradient(160deg, rgba(6,182,212,0.12) 0%, rgba(59,130,246,0.05) 100%)',
+                            mixBlendMode: 'overlay'
+                          }}
+                        ></div>
                         
                         {/* Holographic Scan Lines */}
                         <div className="absolute inset-0 rounded-full bg-[linear-gradient(to_bottom,transparent_50%,rgba(6,182,212,0.1)_50%)] bg-[length:100%_4px]"></div>

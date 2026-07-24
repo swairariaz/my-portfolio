@@ -33,6 +33,24 @@ export const projectsData: Project[] = [
   },
   {
     id: 2,
+    title: "Cyber Twin — AI-Powered Smart Network Management System",
+    category: "Cybersecurity AI (Final Year Project)",
+    description: "An AI-driven digital twin for network infrastructure that detects intrusions in real time using an LSTM model, streaming live threat insights to an interactive dashboard.",
+    detailedDescription: "Cyber Twin implements the concept of a Digital Twin for cybersecurity, creating a virtual replica of a network infrastructure that continuously monitors, analyzes, and predicts network behavior in real time. The system uses a deep learning LSTM model trained on the CICIDS-2017 dataset to detect intrusions and anomalies, with live packet capture via Scapy and WebSocket streaming (0.5s interval) to a React dashboard. Built to shift network management from reactive to predictive to autonomous, it also includes a built-in attack simulation module for safe what-if scenario analysis.",
+    technologies: ["Python", "TensorFlow", "LSTM", "React.js", "Vite", "Tailwind CSS", "FastAPI", "Scikit-learn", "Scapy", "WebSockets"],
+    achievements: [
+      "Achieved 91.7% accuracy with 97% DoS/DDoS recall using an LSTM model (64 units, 10 timesteps) on 385,000+ samples from CICIDS-2017.",
+      "Built a live packet-capture and feature-extraction pipeline with Scapy, selecting the top 25 real-time network features per flow.",
+      "Engineered real-time WebSocket streaming (0.5s interval) to a React dashboard for live alerts and network topology visualization.",
+      "Developed a built-in attack simulation module enabling safe, instant testing of attack scenarios on the live dashboard."
+    ],
+    githubUrl: "https://github.com/swairariaz/cybertwin-ids",
+    youtubeUrl: "https://www.youtube.com/watch?v=q7BTgQhw4zQ",
+    status: "completed",
+    featured: true
+  },
+  {
+    id: 3,
     title: "Medicine Recommendation System",
     category: "Smart Healthcare AI",
     description: "An intelligent web application that predicts diseases from user-input symptoms and provides personalized medical insights using machine learning.",
@@ -50,7 +68,7 @@ export const projectsData: Project[] = [
     featured: true
   },
   {
-    id: 3,
+    id: 4,
     title: "Real-Time Face Emotion Detection",
     category: "Computer Vision AI",
     description: "A real-time facial emotion detection system using a CNN model to classify emotions into seven categories via webcam feed.",
@@ -65,22 +83,6 @@ export const projectsData: Project[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=wnokiMWzCJk",
     status: "completed",
     featured: true
-  },
-  {
-    id: 4,
-    title: "Advanced House Price Prediction",
-    category: "Predictive Analytics",
-    description: "An XGBoost-powered house price prediction system achieving 91% accuracy, optimized with Optuna and deployed via a Gradio interface.",
-    detailedDescription: "Designed and implemented a robust machine learning solution for real estate price valuation using an XGBoost regression model. The pipeline encompassed extensive data preprocessing and feature engineering on a multidimensional dataset, incorporating structural, temporal, and locational attributes. Model performance was rigorously optimized through automated hyperparameter tuning with Optuna, achieving state-of-the-art predictive accuracy. The finalized model was containerized and deployed as an interactive web application via Gradio, demonstrating an end-to-end workflow from data analysis to production-level deployment.",
-    technologies: ["Python", "XGBoost", "Optuna", "Scikit-learn", "Pandas", "Gradio", "Machine Learning", "Hyperparameter Tuning", "Feature Engineering", "Model Deployment"],
-    achievements: [
-      "Achieved a 91% accuracy (R² score) by implementing and fine-tuning an XGBoost model with Optuna.",
-      "Engineered a robust feature set from raw data, significantly improving model performance and prediction reliability.",
-      "Deployed the model as an interactive web application for real-time price estimation."
-    ],
-    githubUrl: "https://github.com/swairariaz/House_price_prediction",
-    status: "completed",
-    featured: false
   },
   {
     id: 5,

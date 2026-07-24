@@ -1,15 +1,14 @@
-import { Code, Eye, MessageCircle, RefreshCw, Cloud, Cpu, BarChart } from 'lucide-react';
+import { MessageCircle, Phone, RefreshCw, BarChart, Cpu, Cloud } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 
 const Services = () => {
   const serviceIcons = [
+    <MessageCircle key="message" className="text-ai-accent" size={24} />,
+    <Phone key="phone" className="text-ai-accent" size={24} />,
+    <RefreshCw key="refresh" className="text-ai-accent" size={24} />,
     <BarChart key="barchart" className="text-ai-accent" size={24} />,
     <Cpu key="cpu" className="text-ai-accent" size={24} />,
-    <Eye key="eye" className="text-ai-accent" size={24} />,
-    <MessageCircle key="message" className="text-ai-accent" size={24} />,
-    <RefreshCw key="refresh" className="text-ai-accent" size={24} />,
-    <Cloud key="cloud" className="text-ai-accent" size={24} />,
-    <Code key="code" className="text-ai-accent" size={24} />
+    <Cloud key="cloud" className="text-ai-accent" size={24} />
   ];
 
   return (
